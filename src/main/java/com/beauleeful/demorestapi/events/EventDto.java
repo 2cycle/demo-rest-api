@@ -1,18 +1,18 @@
 package com.beauleeful.demorestapi.events;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Builder
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter
-@EqualsAndHashCode(of ="id")
-@Entity
-public class Event {
+@Builder @NoArgsConstructor @AllArgsConstructor
 
-    @Id @GeneratedValue
-    private Integer id;
+public class EventDto {
+    /**
+     * 입력값을 받는 dto만듬
+     * 중복이 조금 생김
+     */
     private String name;
     private String description;
     private LocalDateTime beginEnrollmentDateTime;
@@ -23,8 +23,5 @@ public class Event {
     private int basePrice; // (optional)
     private int maxPrice; // (optional)
     private int limitOfEnrollment;
-    private boolean offline;
-    private boolean free;
-    @Enumerated(EnumType.STRING)
-    private EventStatus eventStatus = EventStatus.DRAFT;
+
 }
