@@ -123,7 +123,7 @@ public class EventControllerTests {
     }
 
     @Test
-    @TestDescription("입력 값이 잘못된 경우에 에러가 발생하는 테스트")
+    @TestDescription("입력 값이 잘못된 경우에 에러가 발생하는 테스")
     public void createEent_Bad_Request_Wrong_Input() throws Exception {
         EventDto eventDto = EventDto.builder()
                 .name("Spring")
@@ -140,7 +140,14 @@ public class EventControllerTests {
         this.mockMvc.perform(post("/api/events")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(this.objectMapper.writeValueAsString(eventDto)))
-                .andExpect(status().isBadRequest());
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$[0].objectName").exists())
+                //.andExpect(jsonPath("$[0].field").exists())   // 글로벌 겸용
+                .andExpect(jsonPath("$[0].defaultMessage").exists())
+                .andExpect(jsonPath("$[0].code").exists())
+                //.andExpect(jsonPath("$[0].rejectedValue").exists()) // 이런 값들이 있기를 기대함 (글로별 겸용)
+        ;
     }
 
 }
