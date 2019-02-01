@@ -1,5 +1,6 @@
 package com.beauleeful.demorestapi.index;
 
+import com.beauleeful.demorestapi.common.BaseControllerTest;
 import com.beauleeful.demorestapi.common.RestDocsConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,16 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
-@Import(RestDocsConfiguration.class)
-@ActiveProfiles("test")
-public class IndexControllerTests {
-
-    @Autowired
-    MockMvc mockMvc;
+public class IndexControllerTests extends BaseControllerTest {
 
     @Test
     public void index() throws Exception {

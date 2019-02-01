@@ -1,5 +1,6 @@
 package com.beauleeful.demorestapi.events;
 
+import com.beauleeful.demorestapi.common.BaseControllerTest;
 import com.beauleeful.demorestapi.common.RestDocsConfiguration;
 import com.beauleeful.demorestapi.common.TestDescription;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,29 +36,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
-@Import(RestDocsConfiguration.class)
-@ActiveProfiles("test")
-public class EventControllerTests {
 
-    @Autowired //slicing annotation, no webserver
-    MockMvc mockMvc;
+public class EventControllerTests extends BaseControllerTest {
 
-    //json
-    @Autowired
-    ObjectMapper objectMapper;
-//
 //    @MockBean
 //    EventRepository eventRepository;
 
     @Autowired
     EventRepository eventRepository;
 
-    @Autowired
-    ModelMapper modelMapper;
 
     @Test
     @TestDescription("정상적으로 이벤트를 생성하는 테스트")
